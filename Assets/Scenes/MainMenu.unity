@@ -384,10 +384,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.16597077
+    x: 0.7763158
     y: 0
-    width: 0.66805845
-    height: 1
+    width: 1.2030076
+    height: 1.2327394
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -709,9 +709,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'ENTITI CORPORATION
+  m_text: 'PENA CORPORATION
 
-    ALL RIGHTS RESERVED.'
+    ALL RICHARD''S RESERVED.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 58c042be1b955474fa0bd1114bdfd093, type: 2}
   m_sharedMaterial: {fileID: 8545531785451754378, guid: 58c042be1b955474fa0bd1114bdfd093, type: 2}
