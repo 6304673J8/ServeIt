@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,73 +6,48 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private int nextSceneToLoad;
-    private int sceneToLoad;
+    public static GameManager Instance;
 
-    [SerializeField]
-    private GameObject _gameOverPanel;
-
-    [SerializeField]
-    private Image _livesSprite;
-
-    [SerializeField]
-    private Sprite[] _playerLivesList;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
-    }
+    //Which state is our game (MainMenu, Playing, Lost...) 
+    public GameState State;
     
-    // Update is called once per frame
-    void Update()
+    public static event Action<GameState> OnGameStateChanged;
+
+    private void Awake()
     {
-        SwitchScenes();
+        Instance = this;
     }
 
-    private void SwitchScenes()
+    public void UpdateGameState(GameState newState)
     {
-        sceneToLoad = SceneManager.GetActiveScene().buildIndex;
-        switch (sceneToLoad)
-        { 
-            case 0:
-                if (Input.GetKeyDown(KeyCode.Space))
-                    LoadInGameScene();
-                break;
-            case 1:
-                UpdateLives(3);
-                break;
-        }
-    }
+        State = newState;
 
-    private void LoadInGameScene()
-    {
-        SceneManager.LoadScene(1);
-    }
-
-    public void UpdateLives(int currentLives)
-    {
-        _livesSprite.sprite = _playerLivesList[currentLives];
-        if (currentLives == 0)
+        switch (newState)
         {
-            _gameOverPanel.gameObject.SetActive(true);
-            LoadLevelAfterDelay(5.0f);
+            case GameState.StartGame:
+                //HandleInitialScene();
+                break;
+            case GameState.PlayingTurnMorning:
+                break;
+            case GameState.PlayingTurnNight:
+                break;
+            case GameState.Victory:
+                break;
+            case GameState.GameOver:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
+
+        OnGameStateChanged?.Invoke(newState);
     }
 
-    void GameOverSequence()
-    {
-        _gameOverPanel.gameObject.SetActive(true);
-        StartCoroutine(FlickeringGameOverPanel);
-    }
-    IEnumerator FlickeringGameOverPanel()
-    { 
-        while (_)
-    }
 
-    IEnumerator LoadLevelAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene(1);
+    public enum GameState { 
+        StartGame,
+        PlayingTurnMorning,
+        PlayingTurnNight,
+        Victory,
+        GameOver
     }
 }
