@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Enemigos : MonoBehaviour
 {
 
-   /* public int respawn;
+   public int respawn;
 
     public int speed;
 
@@ -76,5 +76,5 @@ public class Enemigos : MonoBehaviour
     void RepetirCiclo()
     {
         InvokeRepeating("CrearEnemigo", 0f, 1f);
-    }*/
+    }
 }
