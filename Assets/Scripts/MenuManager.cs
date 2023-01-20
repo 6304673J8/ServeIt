@@ -11,6 +11,8 @@ public class MenuManager : MonoBehaviour
 
     public int insertedCoins;
 
+    private bool canPlay;
+
     [SerializeField]
     private GameObject _insertCoinPanel;
 
@@ -43,7 +45,7 @@ public class MenuManager : MonoBehaviour
         {
             case 0:
                 InsertCoinSequence();
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.Space) && canPlay)
                     LoadInGameScene();
                 break;
         }
@@ -63,7 +65,10 @@ public class MenuManager : MonoBehaviour
         }
 
         if (insertedCoins > 0)
+        {
             _startGamePanel.gameObject.SetActive(true);
+            canPlay = true;
+        }
     }
 
     IEnumerator FlickeringInsertCoinPanel()

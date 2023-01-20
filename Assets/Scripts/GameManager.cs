@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        
+    }
+
     public void UpdateGameState(GameState newState)
     {
         State = newState;

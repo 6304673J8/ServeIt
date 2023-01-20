@@ -32,19 +32,15 @@ public class CharacterController: MonoBehaviour
     [SerializeField]
     private int ServeTime;
 
-    public enum RayState
-    {
-        Miss,
-        Hit
-    }
-
-    public RayState Raystate;
+    [SerializeField]
+    private TableBehaviour tableBehaviour;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
+        tableBehaviour = gameObject.GetComponent<TableBehaviour>();
     }
 
     // Update is called once per frame

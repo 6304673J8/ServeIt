@@ -49,4 +49,9 @@ public class TableBehaviour : MonoBehaviour
             spriteRenderer.sprite = halfTable;
         }
     }
+
+    public void AddToScore(int score)
+    { 
+    
+    }
 }
