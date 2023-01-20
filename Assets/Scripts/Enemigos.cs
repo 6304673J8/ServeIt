@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Enemigos : MonoBehaviour
 {
 
-    public int respawn;
+   /* public int respawn;
 
     public int speed;
 
@@ -35,7 +35,6 @@ public class Enemigos : MonoBehaviour
 
     }
 
-
     void OnTriggerEnter2D(Collider2D other) //Respawnear jugador
     {
 
@@ -48,9 +47,7 @@ public class Enemigos : MonoBehaviour
         {
             Destroy(gameObject);
             // resetPosition = true;
-
         }
-
     }
 
     private void OnCollisionEnter2D(Collision colision) //destruir al jugador si éste toca al enemigo
@@ -59,12 +56,6 @@ public class Enemigos : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-
-
-
-
-
     }
 
     void CrearEnemigo()
@@ -85,8 +76,5 @@ public class Enemigos : MonoBehaviour
     void RepetirCiclo()
     {
         InvokeRepeating("CrearEnemigo", 0f, 1f);
-    }
-
-    // private void OnCollisionEnter2D(Collision2D other) {
-    //    Destroy(gameObject);
-
+    }*/
+}

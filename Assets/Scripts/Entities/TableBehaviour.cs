@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TableBehaviour : MonoBehaviour
 {
     //Slider Behaviour
     public int FullServed = 100;
     public int CurrentServed;
-    public UnityEngine.UIElements.ProgressBar progressBar;
+    //public UnityEngine.UIElements.ProgressBar progressBar;
+
+    [SerializeField]
+    TextMeshProUGUI _insertScoreText;
 
     [SerializeField]
     private SpriteRenderer spriteRenderer;
@@ -17,6 +22,7 @@ public class TableBehaviour : MonoBehaviour
 
     private bool isServed;
     private bool serving;
+    public int addedScore;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +35,12 @@ public class TableBehaviour : MonoBehaviour
     {
         if (serving)
         {
-            UpdateProgress(25);
+            if (FullServed < 100)
+            {
+                UpdateProgress(25);
+            }
+            else
+                isServed = true;
         }
     }
 
@@ -40,18 +51,6 @@ public class TableBehaviour : MonoBehaviour
 
     public void Interact()
     {
-        if (isServed)
-        {
-            //AddToScore(750);
-        }
-        else
-        {
-            spriteRenderer.sprite = halfTable;
-        }
-    }
-
-    public void AddToScore(int score)
-    { 
-    
+        spriteRenderer.sprite = halfTable;
     }
 }

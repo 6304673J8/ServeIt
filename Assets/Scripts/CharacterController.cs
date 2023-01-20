@@ -32,8 +32,11 @@ public class CharacterController: MonoBehaviour
     [SerializeField]
     private int ServeTime;
 
+
+
     [SerializeField]
     private TableBehaviour tableBehaviour;
+
 
     // Start is called before the first frame update
     void Start()
@@ -58,7 +61,8 @@ public class CharacterController: MonoBehaviour
         {
             RaycastingCheck();
         }
-        if (Input.GetKeyDown(KeyCode.R))
+
+        /*if (Input.GetKeyDown(KeyCode.R))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.up) * 10, Color.red);
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, RayDist, HittableLayer);
@@ -66,7 +70,7 @@ public class CharacterController: MonoBehaviour
             {
                 Debug.Log("Hit Something " + hit.collider.name);
             }
-        }
+        }*/
     }
 
     private void FixedUpdate()
@@ -87,6 +91,7 @@ public class CharacterController: MonoBehaviour
           
             if (hitInfoVerticalUp.collider.tag == "Objective")
             {
+                hitInfoVerticalUp.collider.gameObject.GetComponent<TableBehaviour>().Interact();
                 Debug.Log("Objective Up");
                 Debug.DrawRay(transform.position, transform.up, Color.red);
             }
@@ -97,6 +102,7 @@ public class CharacterController: MonoBehaviour
 
             if (hitInfoVerticalDown.collider.tag == "Objective")
             {
+                hitInfoVerticalDown.collider.gameObject.GetComponent<TableBehaviour>().Interact();
                 Debug.Log("Objective Down");
                 Debug.DrawRay(transform.position, -transform.up, Color.red);
             }
@@ -107,6 +113,7 @@ public class CharacterController: MonoBehaviour
 
             if (hitInfoHorizontalLeft.collider.tag == "Objective")
             {
+                hitInfoHorizontalLeft.collider.gameObject.GetComponent<TableBehaviour>().Interact();
                 Debug.Log("Objective Left");
                 Debug.DrawRay(transform.position, -transform.right, Color.red);
             }
@@ -117,9 +124,18 @@ public class CharacterController: MonoBehaviour
 
             if ((hitInfoHorizontalRight.collider.tag == "Objective"))
             {
+                hitInfoHorizontalRight.collider.gameObject.GetComponent<TableBehaviour>().Interact();
+
                 Debug.Log("Objective Right");
                 Debug.DrawRay(transform.position, transform.right, Color.red);
             }
         }
     }
+
+    /*public void AddToScore(int score)
+    {
+        spriteRenderer.sprite = halfTable;
+        score += addedScore;
+        _insertScoreText.GetComponent<TextMeshProUGUI>().text = score + "";
+    }*/
 }
