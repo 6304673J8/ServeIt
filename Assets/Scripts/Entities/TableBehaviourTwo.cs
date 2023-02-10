@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TableBehaviour : MonoBehaviour
+public class TableBehaviourTwo : MonoBehaviour
 {
     //Slider Behaviour
     public int FullServed = 100;
@@ -18,13 +18,13 @@ public class TableBehaviour : MonoBehaviour
     private Sprite emptyTable, halfTable, completeTable;
 
     private bool isServed;
+    private bool serving;
     public int addedScore;
     public int timesServed;
 
     //UI Setup
     [SerializeField]
     TextMeshProUGUI _insertScoreText;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -39,17 +39,20 @@ public class TableBehaviour : MonoBehaviour
 
     public void Interact()
     {
-        if (timesServed > 2)
-        {
+        if (timesServed > 2 && timesServed < 3)
             spriteRenderer.sprite = halfTable;
+        else if (timesServed > 4)
+        {
+            spriteRenderer.sprite = completeTable;
             AddToScore();
             isServed = true;
         }
     }
+
     public void AddToScore()
     {
         if (!isServed)
-        {
+        { 
             addedScore += 750;
             _insertScoreText.GetComponent<TextMeshProUGUI>().text = addedScore + "";
         }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CharacterController: MonoBehaviour
@@ -28,22 +29,19 @@ public class CharacterController: MonoBehaviour
     public LineRenderer lineRenderer;
     public Transform firePoint;
     public float RayDist;
+    public int addedScore;
 
     [SerializeField]
     private int ServeTime;
 
-
-
     [SerializeField]
-    private TableBehaviour tableBehaviour;
-
+    TextMeshProUGUI _insertScoreText;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
-        tableBehaviour = gameObject.GetComponent<TableBehaviour>();
     }
 
     // Update is called once per frame
@@ -92,6 +90,14 @@ public class CharacterController: MonoBehaviour
             if (hitInfoVerticalUp.collider.tag == "Objective")
             {
                 hitInfoVerticalUp.collider.gameObject.GetComponent<TableBehaviour>().Interact();
+                hitInfoVerticalUp.collider.gameObject.GetComponent<TableBehaviour>().timesServed++;
+                Debug.Log("Objective Up");
+                Debug.DrawRay(transform.position, transform.up, Color.red);
+            }
+            else if (hitInfoVerticalUp.collider.tag == "ObjectiveTwo")
+            {
+                hitInfoVerticalUp.collider.gameObject.GetComponent<TableBehaviourTwo>().Interact();
+                hitInfoVerticalUp.collider.gameObject.GetComponent<TableBehaviourTwo>().timesServed++;
                 Debug.Log("Objective Up");
                 Debug.DrawRay(transform.position, transform.up, Color.red);
             }
@@ -103,6 +109,14 @@ public class CharacterController: MonoBehaviour
             if (hitInfoVerticalDown.collider.tag == "Objective")
             {
                 hitInfoVerticalDown.collider.gameObject.GetComponent<TableBehaviour>().Interact();
+                hitInfoVerticalDown.collider.gameObject.GetComponent<TableBehaviour>().timesServed++;
+                Debug.Log("Objective Down");
+                Debug.DrawRay(transform.position, -transform.up, Color.red);
+            }
+            else if (hitInfoVerticalDown.collider.tag == "ObjectiveTwo")
+            {
+                hitInfoVerticalDown.collider.gameObject.GetComponent<TableBehaviourTwo>().Interact();
+                hitInfoVerticalDown.collider.gameObject.GetComponent<TableBehaviourTwo>().timesServed++;
                 Debug.Log("Objective Down");
                 Debug.DrawRay(transform.position, -transform.up, Color.red);
             }
@@ -114,6 +128,14 @@ public class CharacterController: MonoBehaviour
             if (hitInfoHorizontalLeft.collider.tag == "Objective")
             {
                 hitInfoHorizontalLeft.collider.gameObject.GetComponent<TableBehaviour>().Interact();
+                hitInfoHorizontalLeft.collider.gameObject.GetComponent<TableBehaviour>().timesServed++;
+                Debug.Log("Objective Left");
+                Debug.DrawRay(transform.position, -transform.right, Color.red);
+            }
+            else if (hitInfoHorizontalLeft.collider.tag == "ObjectiveTwo")
+            {
+                hitInfoHorizontalLeft.collider.gameObject.GetComponent<TableBehaviourTwo>().Interact();
+                hitInfoHorizontalLeft.collider.gameObject.GetComponent<TableBehaviourTwo>().timesServed++;
                 Debug.Log("Objective Left");
                 Debug.DrawRay(transform.position, -transform.right, Color.red);
             }
@@ -125,6 +147,15 @@ public class CharacterController: MonoBehaviour
             if ((hitInfoHorizontalRight.collider.tag == "Objective"))
             {
                 hitInfoHorizontalRight.collider.gameObject.GetComponent<TableBehaviour>().Interact();
+                hitInfoHorizontalRight.collider.gameObject.GetComponent<TableBehaviour>().timesServed++;
+
+                Debug.Log("Objective Right");
+                Debug.DrawRay(transform.position, transform.right, Color.red);
+            }
+            else if ((hitInfoHorizontalRight.collider.tag == "ObjectiveTwo"))
+            {
+                hitInfoHorizontalRight.collider.gameObject.GetComponent<TableBehaviourTwo>().Interact();
+                hitInfoHorizontalRight.collider.gameObject.GetComponent<TableBehaviourTwo>().timesServed++;
 
                 Debug.Log("Objective Right");
                 Debug.DrawRay(transform.position, transform.right, Color.red);
@@ -132,10 +163,9 @@ public class CharacterController: MonoBehaviour
         }
     }
 
-    /*public void AddToScore(int score)
+    public void AddToScore()
     {
-        spriteRenderer.sprite = halfTable;
-        score += addedScore;
-        _insertScoreText.GetComponent<TextMeshProUGUI>().text = score + "";
-    }*/
+        addedScore += 750;
+        _insertScoreText.GetComponent<TextMeshProUGUI>().text = addedScore + "";
+    }
 }
